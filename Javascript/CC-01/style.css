@@ -7,11 +7,14 @@ h1 {
   margin: auto;
   margin-bottom: 2rem;
   text-align: center;
+  font-size: 2rem;
 }
-
+#word {
+  word-wrap: break-word;
+}
 .main {
   margin: auto;
-  width: 20rem;
+  width: 22rem;
   border: 1rem dashed gray;
   padding: 2rem;
 }
@@ -47,7 +50,6 @@ h1 {
   margin: auto;
   font-weight: 700;
   word-wrap: break-word;
-  word-break: break-all;
 }
 .btn {
   padding: 0.5rem 1rem;
