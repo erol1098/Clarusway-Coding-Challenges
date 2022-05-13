@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+.main__form {
+  border: 1rem dashed gainsboro;
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.main__form--name {
+  display: flex;
+  gap: 2rem;
+}
+.main__form--title {
+  display: flex;
+  gap: 4.65rem;
+}
+.main__form--description {
+  display: flex;
+  gap: 1.88rem;
+  align-items: center;
+}
+.main__form--btn {
+  margin: auto;
+}
+.main__blogs {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+.main__blogs__entry1 {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.5rem;
+  padding: 2rem 1rem;
+  border: 0.3rem solid blue;
+}
+.main__blogs__entry1--photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.main__blogs__entry1__entry {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.main__blogs__entry1__entry--title {
+  font-weight: 700;
+}
+.main__blogs__entry1__entry--description {
+  font-size: 1rem;
+  font-weight: 700;
+  word-wrap: break-word;
+  word-break: break-all;
+}
