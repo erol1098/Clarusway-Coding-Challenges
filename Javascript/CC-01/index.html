@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="main">
+      <div><h1>Word Reverser</h1></div>
+      <div class="main__entry">
+        <label for="word" class="main__entry--label"
+          >Enter a word for reverse:</label
+        >
+        <input type="text" id="word" />
+        <button class="btn">Enter</button>
+      </div>
+      <div class="main__input hidden">
+        <p class="main__input--label">The word you enter is:</p>
+        <p class="main__input--input" class=""></p>
+      </div>
+      <div class="main__answer hidden">
+        <p class="main__answer--label">Your answer is:</p>
+        <p class="main__answer--reversed"></p>
+      </div>
+    </section>
+    <script src="./app.js"></script>
+  </body>
+</html>
