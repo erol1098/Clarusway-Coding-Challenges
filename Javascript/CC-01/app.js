@@ -8,8 +8,11 @@ const reversed = document.querySelector(".main__answer--reversed");
 const btn = document.querySelector(".btn");
 
 btn.addEventListener("click", (e) => {
-  let input = word.value.trim().replace(/[.?!]/g);
+  let input = word.value.replace(/[.?!]/g, "").trim();
+  console.log(input);
   input = input.split(" ");
+  inputSection.classList.add("hidden");
+  answerSection.classList.add("hidden");
   if (word.value && input.length > 1) {
     let output = [];
     for (let i = input.length - 1; i >= 0; i--) {
