@@ -8,6 +8,6 @@
 const arr1 = [23, 45, 26, 67, 89];
 const arr2 = [15, 75, 33, 55, 66];
 
-const newArr = arr1.concat(arr2).sort((a, b) => a - b);
+const newArr = [...arr1, ...arr2].sort((a, b) => a - b);
 
 console.log(newArr);

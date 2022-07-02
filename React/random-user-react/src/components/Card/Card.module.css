@@ -1,0 +1,14 @@
+.card {
+  min-width: 20rem;
+  margin-top: 3rem;
+  background-color: cornflowerblue;
+}
+
+.card .title {
+  display: flex;
+  padding: 1rem;
+}
+
+.img {
+  width: 5rem;
+}

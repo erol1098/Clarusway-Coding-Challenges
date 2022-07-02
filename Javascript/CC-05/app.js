@@ -23,7 +23,7 @@ function romanNumber(number) {
   else if (digit3 > 400) output += "D" + hundred.repeat((digit3 - 500) / 100);
   else output += hundred.repeat(digit3 / 100);
 
-  if (digit2 === 90) output + "XC";
+  if (digit2 === 90) output += "XC";
   else if (digit2 === 40) output += "XL";
   else if (digit2 > 40) output += "L" + ten.repeat((digit2 - 50) / 10);
   else output += ten.repeat(digit2 / 10);
