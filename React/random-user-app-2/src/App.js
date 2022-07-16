@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import mailSvg from "./assets/mail.svg";
 import manSvg from "./assets/man.svg";
 import womanSvg from "./assets/woman.svg";
@@ -11,18 +11,23 @@ import cwSvg from "./assets/cw.svg";
 import Footer from "./components/footer/Footer";
 import axios from "axios";
 import defaultImage from "./assets/defaultImage.png";
+import { initialState, reducer } from "./components/reducer";
 const url = "https://randomuser.me/api/";
 
 function App() {
-  const [person, setPerson] = useState("");
-  const [title, setTitle] = useState("name");
-  const [content, setContent] = useState();
-  const [userList, setUserList] = useState([]);
-
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { person, title, content, userList } = state;
   const getData = async () => {
     try {
       const { data } = await axios.get(url);
-      setPerson(data.results[0]);
+      dispatch({ type: "setData", payload: data.results[0] });
+      dispatch({
+        type: "setPerson",
+        payload: {
+          title: `name`,
+          content: `${data.results[0].name.title} ${data.results[0].name.first} ${data.results[0].name.last}`,
+        },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -35,47 +40,47 @@ function App() {
   const hoverHandler = (e) => {
     if (e.target.dataset.label) {
       const key = e.target.dataset.label;
-      setTitle(key);
       if (`${key}` === "age") {
-        setContent(person.dob.age);
+        dispatch({
+          type: "setPerson",
+          payload: { title: key, content: person.dob.age },
+        });
       } else if (`${key}` === "street") {
-        setContent(person.location.street.name);
+        dispatch({
+          type: "setPerson",
+          payload: { title: key, content: person.location.street.name },
+        });
       } else if (`${key}` === "password") {
-        setContent(person.login.password);
+        dispatch({
+          type: "setPerson",
+          payload: { title: key, content: person.login.password },
+        });
       } else if (`${key}` === "name") {
-        setContent(
-          `${person.name.title} ${person.name.first} ${person.name.last}`
-        );
+        dispatch({
+          type: "setPerson",
+          payload: {
+            title: key,
+            content: `${person.name.title} ${person.name.first} ${person.name.last}`,
+          },
+        });
       } else {
-        setContent(person[`${key}`]);
+        dispatch({
+          type: "setPerson",
+          payload: { title: key, content: person[`${key}`] },
+        });
       }
     }
   };
-
   const addUserHandler = () => {
-    setUserList((prevList) => {
-      if (
-        prevList.every((element) => element.login.uuid !== person.login.uuid)
-      ) {
-        return [...prevList, person];
-      } else return prevList;
+    dispatch({
+      type: "setUsers",
+      payload: person,
     });
   };
 
   const newUserHandler = () => {
     getData();
-    setTitle("name");
-    setContent(`${person.name.title} ${person.name.first} ${person.name.last}`);
   };
-
-  useEffect(() => {
-    setTitle("name");
-    setContent(
-      person.name &&
-        `${person.name.title} ${person.name.first} ${person.name.last}`
-    );
-  }, [person]);
-
   return (
     <main>
       <div className="block bcg-orange">
@@ -138,7 +143,7 @@ function App() {
             </thead>
             <tbody>
               {userList.map((user) => (
-                <tr className="body-tr">
+                <tr key={user.login.uuid} className="body-tr">
                   <td className="td">{user.name.first}</td>
                   <td className="td">{user.email}</td>
                   <td className="td">{user.phone}</td>
